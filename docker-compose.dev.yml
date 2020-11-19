@@ -4,11 +4,11 @@ services:
   backend:
     container_name: backend_service
     build: 
-      context: ./backend
+      context: ./back-end
     depends_on: 
       - dataBase
     volumes: 
-      - ./backEnd:/usr/app
+      - ./back-end:/usr/app
       - /usr/app/node_modules
     environment: 
       - MONGO_URL=mongodb://dataBase:27017/app
@@ -23,8 +23,8 @@ services:
     container_name: front_end_service
     build: 
       context: 
-        - ./frontEnd:/usr/frontEnd
-        - /usr/frontEnd/node_modules
+        - ./front-end:/usr/front-end
+        - /usr/front-end/node_modules
       dockerfile: ./frontEnd/docker-dev.Dockerfile
     ports: 
       - 80001:8080
