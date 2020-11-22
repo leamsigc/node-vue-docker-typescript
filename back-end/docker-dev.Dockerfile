@@ -1,7 +1,7 @@
 FROM node:alpine
 
 # Make the `app` folder the current working directory
-WORKDIR /app
+WORKDIR /usr/app
 
 # Copy dependency-related files
 COPY package.json ./

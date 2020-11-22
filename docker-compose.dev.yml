@@ -1,8 +1,9 @@
 version: "3.5"
 services: 
-  backend:
+  back_end:
     container_name: backend_service_dev
     build: 
+      dockerfile: docker-dev.Dockerfile
       context: ./back-end
     depends_on: 
       - data_base
@@ -14,7 +15,7 @@ services:
       - MONGO_URL=mongodb://dataBase:27017/app
       - APP_PORT=8000
     ports: 
-      - 8000:8000
+      - 8000:3000
   front_end:
     container_name: front_end_service_dev
     volumes: 
