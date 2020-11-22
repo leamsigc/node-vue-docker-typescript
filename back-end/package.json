@@ -4,7 +4,8 @@
   "description": "Simple boiler plate for the nodejs and typescript project",
   "main": "app.js",
   "scripts": {
-    "test": "node src/app.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/leamsigc/node-vue-typescript/issues"
   },
-  "homepage": "https://github.com/leamsigc/node-vue-typescript#readme"
+  "homepage": "https://github.com/leamsigc/node-vue-typescript#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
 }
