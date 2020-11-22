@@ -1,0 +1,24 @@
+{
+  "name": "nodejs-typescript",
+  "version": "1.0.0",
+  "description": "Simple boiler plate for the nodejs and typescript project",
+  "main": "app.js",
+  "scripts": {
+    "test": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leamsigc/node-vue-typescript.git"
+  },
+  "keywords": [
+    "node",
+    "typescript",
+    "vuejs"
+  ],
+  "author": "Ismael garcia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leamsigc/node-vue-typescript/issues"
+  },
+  "homepage": "https://github.com/leamsigc/node-vue-typescript#readme"
+}
