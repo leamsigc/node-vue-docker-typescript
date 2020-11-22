@@ -1,5 +1,5 @@
 # Stage   1 building  front end  
-FROM node:latest-alpine as build
+FROM node:alpine as build
 WORKDIR  /app
 COPY package*.json ./
 RUN npm set progress=off

@@ -1,5 +1,5 @@
 
-FROM node:latest-alpine 
+FROM node:alpine 
 WORKDIR /usr/app
 
 COPY package*.json ./

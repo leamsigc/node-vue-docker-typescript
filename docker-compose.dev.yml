@@ -1,32 +1,28 @@
-version: "3.5"
 
-services: 
   backend:
-    container_name: backend_service
-    build: 
-      context: ./back-end
-    depends_on: 
-      - dataBase
-    volumes: 
-      - ./back-end:/usr/app
-      - /usr/app/node_modules
-    environment: 
-      - MONGO_URL=mongodb://dataBase:27017/app
-      - APP_PORT=8000
-    ports: 
-      - 8000:8000
-  dataBase:
-    container_name: data_base_service
-    image: mongo
-    restart: always
-  frontEnd:
-    container_name: front_end_service
-    build: 
-      context: 
-        - ./front-end:/usr/front-end
-        - /usr/front-end/node_modules
-      dockerfile: ./frontEnd/docker-dev.Dockerfile
-    ports: 
-      - 80001:8080
-    environment: 
-      - BACKEND_URL=http://localhost/app
+  container_name: backend_service
+  build: 
+    context: ./back-end
+  depends_on: 
+    - dataBase
+  volumes: 
+    - ./back-end:/usr/app
+    - /usr/app/node_modules
+  command: npm run dev
+  environment: 
+    - MONGO_URL=mongodb://dataBase:27017/app
+    - APP_PORT=8000
+  ports: 
+    - 8000:8000
+front_end:
+  container_name: front_end_service
+  volumes: 
+    - ./front-end:/usr/front-end
+    - /usr/front-end/node_modules
+  build:
+    context: ./front-end
+    dockerfile: ./front-end/docker-dev.Dockerfile
+  ports: 
+    - 80001:8080
+  environment: 
+    - BACKEND_URL=http://localhost/app

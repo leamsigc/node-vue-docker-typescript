@@ -1,31 +1,28 @@
 version: "3.5"
 
 services: 
-  backend:
+  back_end:
     container_name: backend_service
     build: 
-      context: ./backend
+      context: ./back-end
     depends_on: 
-      - dataBase
+      - data_base
     volumes: 
-      - ./backEnd:/usr/app
+      - ./back-end:/usr/app
       - /usr/app/node_modules
     environment: 
       - MONGO_URL=mongodb://dataBase:27017/app
       - APP_PORT=8000
     ports: 
       - 8000:8000
-  dataBase:
+  data_base:
     container_name: data_base_service
     image: mongo
     restart: always
-  frontEnd:
+  front_end:
     container_name: front_end_service
     build: 
-      context: 
-        - ./frontEnd:/usr/frontEnd
-        - /usr/frontEnd/node_modules
-       dockerfile: ./frontEnd/Dockerfile
+      context: ./front-end
     ports: 
       - 80001:8080
     environment: 
