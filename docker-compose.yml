@@ -14,7 +14,7 @@ services:
       - MONGO_URL=mongodb://dataBase:27017/app
       - APP_PORT=8000
     ports: 
-      - 8000:8000
+      - 8082:3000
   data_base:
     container_name: data_base_service
     image: mongo
@@ -23,7 +23,7 @@ services:
     container_name: front_end_service
     build: 
       context: ./front-end
-    ports: 
-      - 80001:8080
+    ports:
+      - '8080:8080'
     environment: 
       - BACKEND_URL=http://localhost/app
