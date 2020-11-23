@@ -16,3 +16,7 @@ docker-compose up -d
 > The back end will run the dev script that do the fallowin
 > nodemon app.js
 > And the front end will run the npm run serve script 
+
+
+
+> Stop all runing container in the system `docker stop $(docker ps -q)`

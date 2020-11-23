@@ -4,9 +4,9 @@
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
+      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">
+        vue-cli documentation
+      </a>
     </p>
     <h3>Installed CLI</h3>
     <h3>Essential Links</h3>
