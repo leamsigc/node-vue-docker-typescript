@@ -9,7 +9,7 @@
       </a>
     </p>
     <h3>Installed CLI</h3>
-    <h3>Essential Links</h3>
+    <h3>Essential</h3>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
-FROM node:alpine
+FROM node:15-alpine
 
 # Make the `app` folder the current working directory
-WORKDIR /app
+WORKDIR /usr/front-end
 
 # Copy dependency-related files
 COPY package.json ./
