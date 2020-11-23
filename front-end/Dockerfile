@@ -3,11 +3,13 @@ FROM node:alpine as build
 WORKDIR  /app
 COPY package*.json ./
 RUN npm set progress=off
-RUN npm ci 
+# RUN yarn install
+# RUN npm ci 
+RUN npm ci --production && npm cache clean --force
 # We need to pass this argument from the docker compose file  
 ARG mode=production 
 ENV NODE_ENV=${mode}
-COPY . .
+COPY . ./
 RUN npm run build
 
 
