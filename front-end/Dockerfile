@@ -5,7 +5,7 @@ COPY package*.json ./
 RUN npm set progress=off
 # RUN yarn install
 # RUN npm ci 
-RUN npm ci --production && npm cache clean --force
+RUN npm ci  && npm cache clean --force
 # We need to pass this argument from the docker compose file  
 ARG mode=production 
 ENV NODE_ENV=${mode}

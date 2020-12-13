@@ -25,7 +25,4 @@ services:
       context: ./front-end
       dockerfile: docker-dev.Dockerfile
     ports: 
-      - 8080:8080
-    command: npm run serve
-    environment: 
-      - BACKEND_URL=http://localhost/app
+      - 8005:8080
