@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import User from '../Models/User'
 
 export default class Register {
   public routes;
@@ -9,7 +10,8 @@ export default class Register {
   }
 
   private MountRoutes() {
-    this.routes.get('/', (req, res) => {
+    this.routes.post('/', (req, res) => {
+      console.log(req.body)
       res.json({
         message: 'Register page!'
       })

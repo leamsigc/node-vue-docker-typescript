@@ -1,8 +1,9 @@
-import { createStore } from "vuex";
+import { AppState } from "./state";
 
+import { createStore } from "vuex";
+import { UserStoreModule } from "@/store/Modules/User";
 export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
+  modules: {
+    UserStoreModule
+  }
 });
