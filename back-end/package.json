@@ -4,8 +4,9 @@
   "description": "Simple boiler plate for the nodejs and typescript project",
   "main": "app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "start": "node build/app.js",
+    "build": "tsc",
+    "dev": "nodemon  --exec ts-node src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,10 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    "@types/express": "^4.17.9",
+    "@types/node": "^14.14.13",
+    "nodemon": "^2.0.6",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
   }
 }
