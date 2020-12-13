@@ -1,4 +1,4 @@
-import userInformation from "@/Models/RegisterUser";
+import UserInformation from "@/Models/RegisterUser";
 import { AppState } from "../state";
 import {
   ActionContext,
@@ -26,7 +26,7 @@ const mutations: MutationTree<UserStore> = {};
 const actions: ActionTree<UserStore, AppState> = {
   async REGISTER_USER(
     { commit }: ActionContext<UserStore, AppState>,
-    User: userInformation
+    User: UserInformation
   ) {
     try {
       console.log(User);

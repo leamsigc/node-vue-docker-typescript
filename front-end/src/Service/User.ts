@@ -1,4 +1,4 @@
-import userInformation from "@/Models/RegisterUser";
+import UserInformation from "@/Models/RegisterUser";
 import axios from "axios";
 
 export default class UserService {
@@ -8,7 +8,7 @@ export default class UserService {
     });
   }
 
-  public RegisterUser(userInformation: userInformation) {
-    return this.AxiosHelper().put("/register", userInformation);
+  public RegisterUser(UserInformation: UserInformation) {
+    return this.AxiosHelper().put("/register", UserInformation);
   }
 }
