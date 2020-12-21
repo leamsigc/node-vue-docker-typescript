@@ -16,6 +16,7 @@
 <style lang="scss">
 :root {
   --primary-color: #42b983;
+  --danger-color: #c70000ee;
   --main-bg-color: #05053b;
   --white: #fefefe;
 }
@@ -95,5 +96,25 @@ body {
 }
 .btn-primary {
   background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.btn-primary:disabled {
+  background: transparent;
+  color: var(--primary-color);
+}
+.alert {
+  width: 100%;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  color: var(--white);
+}
+.success {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.danger {
+  background: var(--danger-color);
+  border-color: var(--danger-color);
 }
 </style>

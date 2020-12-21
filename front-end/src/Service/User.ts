@@ -4,11 +4,17 @@ import axios from "axios";
 export default class UserService {
   AxiosHelper() {
     return axios.create({
-      baseURL: "localhost:8000"
+      baseURL: "http://localhost:8000"
     });
   }
 
-  public RegisterUser(UserInformation: UserInformation) {
-    return this.AxiosHelper().put("/register", UserInformation);
+  public async RegisterUser(UserInformation: UserInformation) {
+    try {
+      const res = await this.AxiosHelper().put("/register", UserInformation);
+      console.log(res);
+      return res;
+    } catch (error) {
+      return error;
+    }
   }
 }

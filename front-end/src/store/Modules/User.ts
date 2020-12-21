@@ -1,12 +1,6 @@
 import UserInformation from "@/Models/RegisterUser";
 import { AppState } from "../state";
-import {
-  ActionContext,
-  ActionTree,
-  MutationTree,
-  GetterTree,
-  Module
-} from "vuex";
+import { ActionContext, ActionTree, MutationTree, GetterTree, Module } from "vuex";
 import UserService from "@/Service/User";
 
 class RegisterUser {
@@ -24,10 +18,7 @@ const getters: GetterTree<UserStore, AppState> = {};
 const mutations: MutationTree<UserStore> = {};
 
 const actions: ActionTree<UserStore, AppState> = {
-  async REGISTER_USER(
-    { commit }: ActionContext<UserStore, AppState>,
-    User: UserInformation
-  ) {
+  async REGISTER_USER({ commit }: ActionContext<UserStore, AppState>, User: UserInformation) {
     try {
       console.log(User);
       const res = await new UserService().RegisterUser(User);

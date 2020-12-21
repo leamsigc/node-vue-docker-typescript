@@ -10,9 +10,20 @@
  * @todo [✔] Update the typescript.
  */
 
-// import { Component, Prop, Watch,Vue } from "vue-property-decorator";
+interface User {
+  username: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+}
+interface ActionState {
+  class: string;
+  msg: string;
+}
+
 import { mapGetters, mapActions } from "vuex";
 import { Options, Vue } from "vue-class-component";
+import { reactive } from "vue";
 
 @Options({
   name: "RegisterUser",
@@ -20,35 +31,85 @@ import { Options, Vue } from "vue-class-component";
     ...mapGetters([])
   },
   methods: {
-    ...mapActions("User_Store", {
+    ...mapActions("UserStoreModule", {
       REGISTER_USER: "REGISTER_USER"
     })
   }
 })
 export default class RegisterUser extends Vue {
+  /*----------  VUex  ----------*/
+  private REGISTER_USER!: Function;
+
+  /*----------  Local data  ----------*/
+  actionState: null | ActionState = null;
+  user: User = {
+    username: "",
+    email: "",
+    password: "",
+    passwordConfirmation: ""
+  };
+
+  /*---------- Computed  ----------*/
+  get passwordConfgirmation() {
+    if (this.user.password.length >= 6) {
+      return this.user.password === this.user.passwordConfirmation;
+    } else {
+      return false;
+    }
+  }
+  get isValidForm() {
+    const isValid =
+      this.user.username.length > 1 &&
+      this.user.email.length > 1 &&
+      this.user.password.length >= 6 &&
+      this.passwordConfgirmation;
+    return isValid;
+  }
+
   /*----------  Methods  ----------*/
-  HandleFormSubmit() {
-    console.log("Form submitted");
+  async HandleFormSubmit() {
+    this.actionState = null;
+    if (this.isValidForm) {
+      const RES = await this.REGISTER_USER({
+        username: this.user.username,
+        email: this.user.email,
+        password: this.user.password
+      });
+      // console.log(RES);
+    } else {
+      this.actionState = {
+        class: "danger",
+        msg: "Please provide all the information"
+      };
+    }
   }
 }
 </script>
 
 <template>
   <form @submit.prevent="HandleFormSubmit">
+    <div class="alert" :class="actionState.class" v-if="actionState">
+      <span>{{ actionState.msg }}</span>
+    </div>
     <h3>Register form</h3>
     <label>
       <span>Username:</span>
-      <input type="text" />
+      <input type="text" v-model.trim="user.username" />
     </label>
     <label>
       <span>Email:</span>
-      <input type="email" />
+      <input type="email" v-model.trim="user.email" />
     </label>
     <label>
       <span>Password:</span>
-      <input type="password" />
+      <input type="password" v-model.trim="user.password" />
+      <span v-show="user.password.length > 0 && user.password.length < 6">Min length for the password is 6</span>
     </label>
-    <button type="submit" class="btn btn-primary btn-full">Register</button>
+    <label v-show="user.password.length >= 6">
+      <span>Confirm Password:</span>
+      <input type="password" v-model.trim="user.passwordConfirmation" />
+    </label>
+    <input type="submit" class="btn btn-primary btn-full" :disabled="!isValidForm" value="Register" />
   </form>
 </template>
 
@@ -80,11 +141,6 @@ label {
   max-width: 400px;
   width: 100%;
 }
-.btn {
-  max-width: 400px;
-  width: 100%;
-  margin-top: 2rem;
-}
 label span {
   display: block;
   margin-bottom: 0.5rem;
@@ -97,6 +153,12 @@ input {
   font-size: 1rem;
 }
 
+.btn {
+  max-width: 400px;
+  width: 100%;
+  margin-top: 2rem;
+  border: 1px solid var(--primary-color);
+}
 h3 {
   font-size: 2rem;
   font-weight: 900;
