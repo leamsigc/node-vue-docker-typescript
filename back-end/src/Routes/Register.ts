@@ -1,20 +1,19 @@
-import { Router } from 'express';
-import User from '../Models/User'
+import { Router } from "express";
 
 export default class Register {
   public routes;
 
   constructor() {
-    this.routes = Router()
-    this.MountRoutes()
+    this.routes = Router();
+    this.MountRoutes();
   }
 
   private MountRoutes() {
-    this.routes.post('/', (req, res) => {
-      console.log(req.body)
+    this.routes.post("/", (req, res) => {
+      console.log(req.body);
       res.json({
-        message: 'Register page!'
-      })
-    })
+        message: "Register page!"
+      });
+    });
   }
 }
