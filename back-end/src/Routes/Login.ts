@@ -15,15 +15,17 @@ export default class Login {
       res.status(403).json({ msg: "Please login" });
     });
     this.routes.post("/", (req, res, next) => {
-      const { username, password } = req.body;
       passport.authenticate("local", (err, user, info) => {
         if (err) throw err;
-        if (!user) res.json({ msg: "User not found" });
+        if (!user) res.status(401).json({ msg: "User not found" });
         else {
-          res.json(req.user);
-          next();
+          req.logIn(user, (err) => {
+            if (err) throw err;
+            res.json(req.user);
+            console.log(req.user);
+          });
         }
-      });
+      })(req, res, next);
     });
   }
 }

@@ -17,4 +17,13 @@ export default class UserService {
       return error;
     }
   }
+  public async LogUserInTheSystem(UserInformation: UserInformation) {
+    try {
+      const res = await this.AxiosHelper().post("/login", UserInformation);
+      console.log(res);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
 }

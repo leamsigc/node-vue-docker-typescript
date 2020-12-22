@@ -13,6 +13,6 @@ export default class Routes {
   private MountRoutes() {
     this.routes.use("/register", new Register().routes);
 
-    this.routes.get("/login", new Login().routes);
+    this.routes.use("/login", new Login().routes);
   }
 }
