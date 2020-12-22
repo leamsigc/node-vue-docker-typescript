@@ -10,7 +10,7 @@ export default class UserService {
 
   public async RegisterUser(UserInformation: UserInformation) {
     try {
-      const res = await this.AxiosHelper().put("/register", UserInformation);
+      const res = await this.AxiosHelper().post("/register", UserInformation);
       console.log(res);
       return res;
     } catch (error) {

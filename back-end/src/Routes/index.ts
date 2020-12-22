@@ -1,21 +1,18 @@
-import { Router } from 'express';
-import Register from './Register'
+import { Router } from "express";
+import Register from "./Register";
+import Login from "./Login";
 
 export default class Routes {
-    public routes;
+  public routes;
 
-    constructor() {
-        this.routes = Router()
-        this.MountRoutes()
-    }
+  constructor() {
+    this.routes = Router();
+    this.MountRoutes();
+  }
 
-    private MountRoutes() {
-        this.routes.use('/register', new Register().routes)
+  private MountRoutes() {
+    this.routes.use("/register", new Register().routes);
 
-        this.routes.get('/login', (req, res) => {
-            res.json({
-                message: 'Login page here!'
-            })
-        })
-    }
+    this.routes.get("/login", new Login().routes);
+  }
 }

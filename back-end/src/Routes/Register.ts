@@ -1,4 +1,5 @@
 import { Router } from "express";
+import User from "../User/UserModel";
 
 export default class Register {
   public routes;
@@ -10,9 +11,24 @@ export default class Register {
 
   private MountRoutes() {
     this.routes.post("/", (req, res) => {
-      console.log(req.body);
-      res.json({
-        message: "Register page!"
+      const { username, email, password } = req.body;
+
+      User.findOne({ email }, async (err, doc) => {
+        if (err) throw err;
+        if (doc) {
+          return res.status(204).json({ msg: "That email is already in use." });
+        }
+
+        //@ts-ignore
+        User.register(
+          { username, email },
+          password,
+          async (err: any, createdUser: any) => {
+            if (err) throw err;
+            const { username, email } = createdUser;
+            res.json({ username, email });
+          }
+        );
       });
     });
   }
