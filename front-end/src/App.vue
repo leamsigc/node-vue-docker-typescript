@@ -1,9 +1,9 @@
 <template>
   <div class="parent">
-    <header class="text-gray-600 body-font bg-indigo-600">
+    <header class="text-gray-900 body-font bg-transparent">
       <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <router-link to="/" class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
-          <svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <router-link to="/" class="flex title-font font-medium items-center mb-4 md:mb-0">
+          <svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" class="bg-indigo-400 rounded">
             <g filter="url(#filter0_d)">
               <path
                 d="M13.499 23c-.684 0-1.17-.132-1.458-.396-.276-.276-.414-.678-.414-1.206 0-.156.006-.402.018-.738.024-.348.054-.756.09-1.224.036-.468.072-.978.108-1.53.048-.552.096-1.116.144-1.692.06-.708.108-1.314.144-1.818a51.595 51.595 0 00.162-2.232c.024-.252.036-.468.036-.648.012-.192.018-.366.018-.522.012-.156.018-.324.018-.504 0-.096.03-.162.09-.198a.288.288 0 01.18-.072c.312 0 .654-.006 1.026-.018l1.116-.072c.372-.024.732-.042 1.08-.054.348-.024.654-.036.918-.036.768 0 1.428.096 1.98.288.552.18.996.45 1.332.81.348.348.6.774.756 1.278.168.504.252 1.08.252 1.728 0 .708-.096 1.392-.288 2.052a4.877 4.877 0 01-.864 1.728 4.253 4.253 0 01-1.53 1.206c-.624.3-1.368.45-2.232.45-.516 0-.954-.054-1.314-.162l-.252 3.312a.456.456 0 01-.072.216c-.036.036-.108.054-.216.054h-.828zm2.916-10.26c-.156 0-.33.012-.522.036-.192.012-.396.03-.612.054l-.09 1.836c-.036.72-.084 1.476-.144 2.268.18.048.354.084.522.108.18.012.342.018.486.018.42 0 .756-.096 1.008-.288.264-.204.468-.45.612-.738.144-.288.24-.588.288-.9.048-.312.072-.582.072-.81 0-.516-.12-.906-.36-1.17-.228-.276-.648-.414-1.26-.414z"
@@ -31,15 +31,15 @@
           </svg>
           <span class="ml-3 text-xl">Plan-it</span>
         </router-link>
-        <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center text-white">
-          <router-link to="/" class="mr-5 hover:text-gray-300">Home</router-link>
-          <a class="mr-5 hover:text-gray-300">Schedule</a>
+        <nav class="md:ml-auto md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <router-link to="/" class="mr-5 hover:text-indigo-500">Home</router-link>
+          <a class="mr-5 hover:text-indigo-500">Schedule</a>
         </nav>
         <router-link
           to="/login"
-          class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+          class="inline-flex items-center bg-indigo-500 border-2 border-indigo-500 text-gray-200 uppercase py-1 px-3 focus:outline-none hover:bg-indigo-200 rounded mt-4 md:mt-0"
         >
-          Login
+          Free trail
           <svg
             fill="none"
             stroke="currentColor"
@@ -56,7 +56,7 @@
     </header>
     <router-view />
     <footer class="text-gray-600 body-font">
-      <div class="container px-5 mx-auto">
+      <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-wrap md:text-left text-center">
           <div class="lg:w-1/6 md:w-1/2 w-full px-4">
             <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
@@ -166,7 +166,6 @@
         <div class="container px-5 py-8 flex flex-wrap mx-auto items-center">
           <div class="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start">
             <div class="relative sm:w-64 w-40 sm:mr-4 mr-2">
-              <label for="footer-field" class="leading-7 text-sm text-gray-600">Placeholder</label>
               <input
                 type="text"
                 id="footer-field"
@@ -177,10 +176,12 @@
             <button
               class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
             >
-              Button
+              Get free trial
             </button>
             <p class="text-gray-500 text-sm md:ml-6 md:mt-0 mt-2 sm:text-left text-center">
-              Bitters chicharrones fanny pack <br class="lg:block hidden" />waistcoat green juice
+              Don't wait more the oportuny
+              <br class="lg:block hidden" />
+              for a better future is here.
             </p>
           </div>
           <span class="inline-flex lg:ml-auto lg:mt-0 mt-6 w-full justify-center md:justify-start md:w-auto">
@@ -247,14 +248,14 @@
       <div class="bg-gray-100">
         <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p class="text-gray-500 text-sm text-center sm:text-left">
-            © 2020 tailblocks —
-            <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1" target="_blank" rel="noopener noreferrer"
-              >@knyttneve</a
+            © 2020 Leamsigc —
+            <a href="https://twitter.com/leamsigc" class="text-gray-600 ml-1" target="_blank" rel="noopener noreferrer"
+              >@leamsigc</a
             >
           </p>
-          <span class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-500 text-sm"
-            >Enamel pin tousled raclette tacos irony</span
-          >
+          <span class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-500 text-sm">
+            Tacos are life ❤️❤️❤️❤️❤️
+          </span>
         </div>
       </div>
     </footer>
@@ -265,5 +266,6 @@
 @import "./assets/css/styles.scss";
 body {
   @apply bg-gray-100;
+  @apply font-sans;
 }
 </style>

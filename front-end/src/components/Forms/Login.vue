@@ -56,17 +56,32 @@ export default class Login extends Vue {
   async HandleFormSubmit() {
     this.actionState = null;
     if (this.isValidForm) {
-      const RES = await this.LOGIN_USER({
-        username: this.user.username,
-        password: this.user.password
-      });
-      // console.log(RES);
-    } else {
-      this.actionState = {
-        class: "alert-danger",
-        msg: "Please provide all the information"
-      };
+      try {
+        const RES = await this.LOGIN_USER({
+          username: this.user.username,
+          password: this.user.password
+        });
+        if (RES.ok) {
+          this.actionState = {
+            class: "alert-success",
+            msg: "You will be redirect shortly"
+          };
+        } else {
+          this.actionState = {
+            class: "alert-danger",
+            msg: "Please provide all the information"
+          };
+        }
+      } catch (error) {
+        this.actionState = {
+          class: "alert-danger",
+          msg: "Please provide all the information"
+        };
+      }
     }
+  }
+  handleClose() {
+    this.actionState = null;
   }
 }
 </script>
@@ -77,8 +92,22 @@ export default class Login extends Vue {
       class="col-span-4 md:col-span-2 bg-white flex flex-col w-full md:mt-0 p-10"
       @submit.prevent="HandleFormSubmit"
     >
-      <div class="mb-2 p-2 text-center rounded-2xl border-current" :class="actionState.class" v-if="actionState">
+      <div class="mb-2 p-2 text-center relative rounded border-current" :class="actionState.class" v-if="actionState">
         <span>{{ actionState.msg }}</span>
+        <span class="absolute top-0 bottom-0 right-0 px-1 py-2" @click="handleClose">
+          <svg
+            class="fill-current h-6 w-6 text-white-500"
+            role="button"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <title>Close</title>
+            <path
+              d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+            />
+          </svg>
+        </span>
+        <!-- <span class="absolute top-2 right-3 font-bold">X</span> -->
       </div>
       <h3 class="text-gray-900 text-lg mb-1 font-medium title-font text-center">Login</h3>
       <div class="relative mb-4">
