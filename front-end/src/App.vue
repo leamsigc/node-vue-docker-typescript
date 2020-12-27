@@ -3,17 +3,31 @@
     <header class="text-gray-600 body-font bg-indigo-600">
       <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <router-link to="/" class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          <svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d)">
+              <path
+                d="M13.499 23c-.684 0-1.17-.132-1.458-.396-.276-.276-.414-.678-.414-1.206 0-.156.006-.402.018-.738.024-.348.054-.756.09-1.224.036-.468.072-.978.108-1.53.048-.552.096-1.116.144-1.692.06-.708.108-1.314.144-1.818a51.595 51.595 0 00.162-2.232c.024-.252.036-.468.036-.648.012-.192.018-.366.018-.522.012-.156.018-.324.018-.504 0-.096.03-.162.09-.198a.288.288 0 01.18-.072c.312 0 .654-.006 1.026-.018l1.116-.072c.372-.024.732-.042 1.08-.054.348-.024.654-.036.918-.036.768 0 1.428.096 1.98.288.552.18.996.45 1.332.81.348.348.6.774.756 1.278.168.504.252 1.08.252 1.728 0 .708-.096 1.392-.288 2.052a4.877 4.877 0 01-.864 1.728 4.253 4.253 0 01-1.53 1.206c-.624.3-1.368.45-2.232.45-.516 0-.954-.054-1.314-.162l-.252 3.312a.456.456 0 01-.072.216c-.036.036-.108.054-.216.054h-.828zm2.916-10.26c-.156 0-.33.012-.522.036-.192.012-.396.03-.612.054l-.09 1.836c-.036.72-.084 1.476-.144 2.268.18.048.354.084.522.108.18.012.342.018.486.018.42 0 .756-.096 1.008-.288.264-.204.468-.45.612-.738.144-.288.24-.588.288-.9.048-.312.072-.582.072-.81 0-.516-.12-.906-.36-1.17-.228-.276-.648-.414-1.26-.414z"
+                fill="#02E079"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_d"
+                x="11.627"
+                y="10.04"
+                width="9.468"
+                height="14.96"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                <feOffset dy="2" />
+                <feColorMatrix values="0 0 0 0 0.10365 0 0 0 0 0.01125 0 0 0 0 0.3 0 0 0 0.27 0" />
+                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow" />
+                <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+              </filter>
+            </defs>
           </svg>
           <span class="ml-3 text-xl">Plan-it</span>
         </router-link>
@@ -40,9 +54,7 @@
         </router-link>
       </div>
     </header>
-    <div class="container mb-10 mx-auto">
-      <router-view />
-    </div>
+    <router-view />
     <footer class="text-gray-600 body-font">
       <div class="container px-5 mx-auto">
         <div class="flex flex-wrap md:text-left text-center">

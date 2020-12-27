@@ -1,41 +1,42 @@
 <template>
   <div class="home">
-    <section class="text-gray-600 body-font">
-      <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+    <section class="text-indigo-900 body-font bg-gray-200 custom-bg">
+      <div class="container mx-auto flex px-10 pt-28 md:flex-row flex-col items-center">
         <div
-          class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center"
+          class="md:w-1/2 lg:pr-16 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center pb-10"
         >
-          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-            Scheduling sofware make by humans for humans
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-indigo-900">
+            Scheduling sofware <br />
+            by humans for humans
           </h1>
           <p class="mb-8 leading-relaxed">
             Plan-It helps you schedule and keep and better overview of all the projects and employees in your company by
             taking into account staff vacation, availability, and all the basic need for a better overview. Sign up for
             a early 30% off and 30 day free trial below.
           </p>
-          <div class="flex w-full md:justify-start justify-center items-end">
-            <div class="relative mr-4 md:w-full lg:w-full xl:w-1/2 w-2/4">
+          <div class="flex w-full md:justify-start justify-center flex-wrap items-end">
+            <div class="relative mb-2 md:mb-0 md:mr-4 w-full md:w-full lg:w-full xl:w-1/2 w-2/4">
               <input
                 type="email"
                 id="hero-field"
                 name="hero-field"
                 placeholder="E.G tesla@auto.com"
-                class="w-full bg-gray-100 rounded border bg-opacity-50 border-gray-300 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                class="w-full bg-gray-100 rounded border bg-opacity-50 border-gray-300 focus:ring-indigo-200 focus:bg-white focus:border-indigo-500 text-indigo-900 outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
             <button
-              class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg"
+              class="inline-flex w-full md:w-auto text-white bg-indigo-900 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-700 rounded text-lg"
             >
               Get special offer now
             </button>
           </div>
-          <p class="text-sm mt-2 text-gray-500 mb-8 w-full">
+          <p class="text-sm mt-2 text-indigo-500 mb-8 w-full">
             Need access now?
-            <router-link to="contact" class="text-indigo-600">Request a special meeting </router-link>
+            <router-link to="contact" class="text-blue-700">Request a special meeting </router-link>
           </p>
         </div>
-        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-          <img class="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600" />
+        <div class="lg:w-1/2 md:w-1/2 w-6/6 shadow-none hidden md:block">
+          <!-- <img class="object-fit object-center rounded custom-h w-full" alt="hero" src="../assets/img/hero-bg.png" /> -->
         </div>
       </div>
     </section>
@@ -233,3 +234,14 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class Home extends Vue {}
 </script>
+<style lang="scss" scoped>
+.custom-bg {
+  height: calc(80vh - 200px);
+  background: linear-gradient(to right, rgba(4, 114, 204, 0.096), rgba(1, 61, 129, 0.144)),
+    url("../assets/img/hero-bg.png") no-repeat center right;
+  background-size: contain;
+  @media (max-width: 768px) {
+    background: #eee;
+  }
+}
+</style>
