@@ -6,6 +6,7 @@ export default class Routes {
   public routes;
 
   constructor() {
+    require("../Authorization/Auth");
     this.routes = Router();
     this.MountRoutes();
   }

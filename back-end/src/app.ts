@@ -7,8 +7,9 @@ import Session from "express-session";
 import CookieParser from "cookie-parser";
 import passport from "passport";
 import userModel from "./User/UserModel";
-// import { Strategy } from "passport-local";
+import passportJWTFun from "./Authorization/Auth";
 const LOCALSTRATERGY = require("passport-local").Strategy;
+
 const corsOption: cors.CorsOptions = {
   origin: "http://localhost:8005",
   optionsSuccessStatus: 200,
@@ -55,6 +56,8 @@ class App {
     this.app.use(passport.session());
     // @ts-ignore
     passport.use(new LOCALSTRATERGY(userModel.authenticate()));
+    
+    passportJWTFun(passport);
     // @ts-ignore
     passport.serializeUser(userModel.serializeUser());
     // @ts-ignore

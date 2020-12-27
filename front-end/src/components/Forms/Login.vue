@@ -61,7 +61,7 @@ export default class Login extends Vue {
           username: this.user.username,
           password: this.user.password
         });
-        if (RES.ok) {
+        if (RES.status === 200) {
           this.actionState = {
             class: "alert-success",
             msg: "You will be redirect shortly"
@@ -69,7 +69,7 @@ export default class Login extends Vue {
         } else {
           this.actionState = {
             class: "alert-danger",
-            msg: "Please provide all the information"
+            msg: RES.response.data.msg
           };
         }
       } catch (error) {
@@ -107,7 +107,6 @@ export default class Login extends Vue {
             />
           </svg>
         </span>
-        <!-- <span class="absolute top-2 right-3 font-bold">X</span> -->
       </div>
       <h3 class="text-gray-900 text-lg mb-1 font-medium title-font text-center">Login</h3>
       <div class="relative mb-4">

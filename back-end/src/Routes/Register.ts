@@ -1,5 +1,6 @@
 import { Router } from "express";
 import User from "../User/UserModel";
+import jwt from "jsonwebtoken";
 
 export default class Register {
   public routes;
@@ -10,26 +11,44 @@ export default class Register {
   }
 
   private MountRoutes() {
-    this.routes.post("/", (req, res) => {
+    this.routes.post("/", async (req, res) => {
       const { username, email, password } = req.body;
+      let userExist = await User.findOne({ username });
 
-      User.findOne({ email }, async (err, doc) => {
-        if (err) throw err;
-        if (doc) {
-          return res.status(204).json({ msg: "That email is already in use." });
-        }
+      if (userExist) {
+        return res.status(403).json({ msg: "That email is already in use." });
+      }
 
-        //@ts-ignore
-        User.register(
-          { username, email },
-          password,
-          async (err: any, createdUser: any) => {
-            if (err) throw err;
-            const { username, email } = createdUser;
-            res.json({ username, email });
+      // @ts-ignore
+      User.register(
+        { username, email },
+        password,
+        async (err: any, createdUser: any) => {
+          if (err) {
+            return res
+              .status(403)
+              .json({ msg: "That email is already in use." });
           }
-        );
-      });
+
+          const { username, email } = createdUser;
+          const token = await this.genToken(createdUser);
+          res.status(200).json({ username, email, token });
+        }
+      );
     });
+  }
+
+  async genToken(user: any) {
+    return jwt.sign(
+      {
+        data: {
+          user: user._id,
+          username: user.username
+        }
+      },
+      // @ts-ignore
+      process.env.JWT_SECRET,
+      { expiresIn: "5h" }
+    );
   }
 }
