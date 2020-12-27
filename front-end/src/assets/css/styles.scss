@@ -1,0 +1,19 @@
+/*! @import */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Add you custom styles here
+// or use this file to create Tailwind components using the
+// @apply directive */
+@layer components {
+  .alert-success {
+    @apply p-2  text-white bg-green-500;
+  }
+  .alert-danger {
+    @apply p-1  text-white bg-red-500;
+  }
+  .alert-warning {
+    @apply p-1  text-white bg-yellow-500;
+  }
+}

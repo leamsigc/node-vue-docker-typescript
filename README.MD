@@ -1,6 +1,6 @@
 # To get this system up and running fallow the next command
 
-## For production just run  the fallowing command
+## For production just run the fallowing command
 
 ```node
 docker-compose up -d
@@ -13,6 +13,7 @@ docker-compose up -d
 #### For local development
 
 `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build`
+
 > The back end will run the dev script that do the fallowin
 > nodemon app.js
 > And the front end will run the npm run serve script
