@@ -8,5 +8,5 @@ build
 dist
 .idea/*
 .vscode
-./back-end/.env
-./front-end/.env
+back-end/.env
+front-end/.env
