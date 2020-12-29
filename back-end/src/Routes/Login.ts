@@ -17,8 +17,8 @@ export default class Login {
   }
 
   private MountRoutes() {
-    this.routes.get("/", (req, res) => {
-      res.status(403).json({ msg: "Please login" });
+    this.routes.get("/", (req, res, next) => {
+      next(new createErrors.Unauthorized());
     });
     this.routes.post("/login", async (req, res, next) => {
       try {

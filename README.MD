@@ -25,3 +25,7 @@ docker-compose up -d
 ```shell
 sudo lsof -i -P -n | grep 8005
 ```
+
+#### In the back end service
+
+> create and .env file and copy paste the env,example and change the values that you need
