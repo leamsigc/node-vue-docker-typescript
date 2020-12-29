@@ -5,7 +5,6 @@ import passportLocalMongoose from "passport-local-mongoose";
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    unique: true,
     required: true,
     min: 6,
     max: 255
@@ -24,7 +23,8 @@ const userSchema = new mongoose.Schema({
   }
 });
 userSchema.plugin(passportLocalMongoose, {
-  session: false
+  session: false,
+  usernameUnique: false
 });
 
 const userModel = mongoose.model("User", userSchema);

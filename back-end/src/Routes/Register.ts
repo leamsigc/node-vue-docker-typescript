@@ -1,6 +1,8 @@
 import { Router } from "express";
 import User from "../User/UserModel";
-import jwt from "jsonwebtoken";
+import createErrors from "http-errors";
+import authSchema from "../Helpers/UserValidationSchema";
+import { signAccessToken, signRefreshToken } from "../Helpers/JWTHelpers";
 
 export default class Register {
   public routes;
@@ -11,44 +13,39 @@ export default class Register {
   }
 
   private MountRoutes() {
-    this.routes.post("/", async (req, res) => {
-      const { username, email, password } = req.body;
-      let userExist = await User.findOne({ username });
+    this.routes.post("/", async (req, res, next) => {
+      try {
+        const result = await authSchema.validateAsync(req.body);
+        let userExist = await User.findOne({ email: result.email });
+        if (userExist) {
+          throw new createErrors.Conflict(
+            `Please provide a different username or email`
+          );
+        }
 
-      if (userExist) {
-        return res.status(403).json({ msg: "That email is already in use." });
-      }
+        // @ts-ignore
+        User.register(
+          { username: result.username, email: result.email },
+          result.password,
+          async (err: any, createdUser: any) => {
+            if (err) {
+              return next(err);
+            }
+            try {
+              const { username, email, _id } = createdUser;
+              const token = await signAccessToken(createdUser);
+              const refreshToken = await signRefreshToken(createdUser);
 
-      // @ts-ignore
-      User.register(
-        { username, email },
-        password,
-        async (err: any, createdUser: any) => {
-          if (err) {
-            return res
-              .status(403)
-              .json({ msg: "That email is already in use." });
+              res.status(200).json({ id: _id, username, email, token });
+            } catch (error) {
+              next(error);
+            }
           }
-
-          const { username, email } = createdUser;
-          const token = await this.genToken(createdUser);
-          res.status(200).json({ username, email, token });
-        }
-      );
+        );
+      } catch (error) {
+        if (error.isJoi === true) error.status = 422;
+        next(error);
+      }
     });
-  }
-
-  async genToken(user: any) {
-    return jwt.sign(
-      {
-        data: {
-          user: user._id,
-          username: user.username
-        }
-      },
-      // @ts-ignore
-      process.env.JWT_SECRET,
-      { expiresIn: "5h" }
-    );
   }
 }

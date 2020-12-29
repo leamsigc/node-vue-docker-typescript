@@ -84,7 +84,7 @@ export default class RegisterUser extends Vue {
         } else {
           this.actionState = {
             class: "alert-danger",
-            msg: RES.response.data.msg
+            msg: RES.response.data.error.message
           };
         }
       } catch (error) {
