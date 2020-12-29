@@ -11,7 +11,7 @@ const passportJWTFun = (passport: any) => {
         secretOrKey: process.env.JWT_SECRET
       },
       async (jwtPayload: any, done: any) => {
-        return await UserModel.findById(jwtPayload.sub)
+        return await UserModel.findById(jwtPayload.aud)
           .then((user) => {
             return done(null, user);
           })

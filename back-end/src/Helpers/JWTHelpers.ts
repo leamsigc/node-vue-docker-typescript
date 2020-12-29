@@ -6,7 +6,7 @@ const signAccessToken = async (user: any) => {
   try {
     //@ts-ignore
     const secret: string = process.env.JWT_SECRET;
-    const options = { expiresIn: "15m", audience: `${user._id}` };
+    const options = { expiresIn: "1m", audience: `${user._id}` };
     const token = JWT.sign(
       {
         data: {
