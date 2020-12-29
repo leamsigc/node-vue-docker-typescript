@@ -13,6 +13,7 @@
 import { Options, Vue } from "vue-class-component";
 import Login from "../components/Forms/Login.vue";
 import RegisterUser from "../components/Forms/RegisterUser.vue";
+
 @Options({
   name: "LoginRegister",
   components: {
@@ -23,6 +24,8 @@ import RegisterUser from "../components/Forms/RegisterUser.vue";
 export default class LoginRegister extends Vue {
   /*----------  Local data   ----------*/
   currentShow = "register";
+
+  /*----------  Methods  ----------*/
 
   handleFormChange(form: string) {
     this.currentShow = form;
@@ -36,7 +39,7 @@ export default class LoginRegister extends Vue {
       <div class="col-span-4 flex flex-col text-center w-full my-10">
         <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Plan-it</h1>
         <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500">
-          Please login if you have a user already or register if you don't have a profile.
+          Please login if you have an account already or register if you don't.
         </p>
         <div class="flex md:hidden mx-auto border-2 border-indigo-500 rounded overflow-hidden mt-6">
           <button

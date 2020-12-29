@@ -20,7 +20,25 @@ export default class UserService {
   }
   public async LogUserInTheSystem(UserInformation: UserInformation) {
     try {
-      const res = await this.AxiosHelper().post("/login", UserInformation);
+      const res = await this.AxiosHelper().post("/auth/login", UserInformation);
+      console.log(res);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
+  public async LogOutUser(refreshToken: string) {
+    try {
+      const res = await this.AxiosHelper().post("/auth/logout", { refreshToken });
+      console.log(res);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
+  public async RefreshAuthToken(refreshToken: string) {
+    try {
+      const res = await this.AxiosHelper().post("/refresh-token", { refreshToken });
       console.log(res);
       return res;
     } catch (error) {

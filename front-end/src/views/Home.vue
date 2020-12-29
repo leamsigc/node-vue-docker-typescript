@@ -6,13 +6,13 @@
           class="md:w-1/2 lg:pr-16 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center pb-10"
         >
           <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-indigo-900">
-            Scheduling sofware <br />
+            Scheduling software <br />
             by humans for humans
           </h1>
           <p class="mb-8 leading-relaxed">
             Plan-It helps you schedule and keep and better overview of all the projects and employees in your company by
             taking into account staff vacation, availability, and all the basic need for a better overview. Sign up for
-            a early 30% off and 30 day free trial below.
+            an early 30% off and 30 day free trial below.
           </p>
           <div class="flex w-full md:justify-start justify-center flex-wrap items-end">
             <div class="relative mb-2 md:mb-0 md:mr-4 w-full md:w-full lg:w-full xl:w-1/2 w-2/4">

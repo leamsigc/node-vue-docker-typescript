@@ -22,6 +22,7 @@ interface ActionState {
 import { mapGetters, mapActions } from "vuex";
 import { Options, Vue } from "vue-class-component";
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
 
 @Options({
   name: "Login",
@@ -44,6 +45,7 @@ export default class Login extends Vue {
     username: "",
     password: ""
   };
+  router = useRouter();
 
   /*---------- Computed  ----------*/
 
@@ -66,10 +68,11 @@ export default class Login extends Vue {
             class: "alert-success",
             msg: "You will be redirect shortly"
           };
+          this.router.push("/dashboard");
         } else {
           this.actionState = {
             class: "alert-danger",
-            msg: RES.response.data.msg
+            msg: RES.response.data.error.message
           };
         }
       } catch (error) {
@@ -108,7 +111,7 @@ export default class Login extends Vue {
           </svg>
         </span>
       </div>
-      <h3 class="text-gray-900 text-lg mb-1 font-medium title-font text-center">Login</h3>
+      <h3 class="text-gray-900 text-lg mb-1 font-medium title-font text-center">Log in</h3>
       <div class="relative mb-4">
         <label for="name" class="leading-7 text-sm text-gray-600">Username</label>
         <input
@@ -143,7 +146,7 @@ export default class Login extends Vue {
         @click="$emit('change-form', 'register')"
         class="transition duration-500 ease-in-out mx-auto hover:text-white text-indigo-600 bg-transparent border-2 border-indigo-600 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
       >
-        Register
+        Sign up
       </button>
     </div>
   </div>

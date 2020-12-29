@@ -37,6 +37,4 @@ export default class About extends Vue {}
   grid-template-rows: 100px auto;
   align-content: center;
 }
-h1 {
-}
 </style>

@@ -1,36 +1,32 @@
-import { register } from "register-service-worker";
 import UserInformation from "@/Models/RegisterUser";
 import { AppState } from "../state";
 import { ActionContext, ActionTree, MutationTree, GetterTree, Module } from "vuex";
 import UserService from "@/Service/User";
-
-class RegisterUser {
-  currentUser = new UserInformation();
-  constructor(registerUserStatus?: any) {
-    Object.assign(this, registerUserStatus);
-  }
-
-  public set loginUser(userInfo: UserInformation) {
-    this.currentUser = userInfo;
-  }
-}
+import AuthUser from "@/Models/AuthUser";
 
 export class UserStore {
-  registerUser = new RegisterUser();
+  currentUser = new AuthUser();
 }
 
-const getters: GetterTree<UserStore, AppState> = {};
+const getters: GetterTree<UserStore, AppState> = {
+  GET_CURRENT_USER_INFORMATION(state: UserStore) {
+    return state.currentUser;
+  }
+};
 
-const mutations: MutationTree<UserStore> = {};
+const mutations: MutationTree<UserStore> = {
+  async SET_USER_INFORMATION(state: UserStore, userInformation: AuthUser) {
+    state.currentUser = userInformation;
+  }
+};
 
 const actions: ActionTree<UserStore, AppState> = {
   async REGISTER_USER({ commit }: ActionContext<UserStore, AppState>, User: UserInformation) {
     try {
-      console.log(User);
       const res = await new UserService().RegisterUser(User);
-      console.log(res);
-      if (res.status === 202) {
-        const responseUserLog = new RegisterUser(res.data);
+      if (res.status === 200) {
+        const responseUserLog = new AuthUser(res.data);
+        commit("SET_USER_INFORMATION", responseUserLog);
         return res;
       }
       return res;
@@ -40,11 +36,37 @@ const actions: ActionTree<UserStore, AppState> = {
   },
   async LOGIN_USER({ commit }: ActionContext<UserStore, AppState>, User: UserInformation) {
     try {
-      console.log(User);
       const res = await new UserService().LogUserInTheSystem(User);
       console.log(res);
-      if (res.status === 202) {
-        const responseUserLog = new RegisterUser(res.data);
+      if (res.status === 200) {
+        const responseUserLog = new AuthUser(res.data);
+        commit("SET_USER_INFORMATION", responseUserLog);
+        return res;
+      }
+      return res;
+    } catch (error) {
+      return error;
+    }
+  },
+  async REFRESH_TOKEN({ commit }: ActionContext<UserStore, AppState>, token: string) {
+    try {
+      const res = await new UserService().RefreshAuthToken(token);
+      if (res.status === 200) {
+        const responseUserLog = new AuthUser(res.data);
+        commit("SET_USER_INFORMATION", responseUserLog);
+        return res;
+      }
+      return res;
+    } catch (error) {
+      return error;
+    }
+  },
+  async LOGOUT_USER({ commit }: ActionContext<UserStore, AppState>, token: string) {
+    try {
+      const res = await new UserService().LogOutUser(token);
+      if (res.status === 200) {
+        const responseUserLog = new AuthUser();
+        commit("SET_USER_INFORMATION", responseUserLog);
         return res;
       }
       return res;

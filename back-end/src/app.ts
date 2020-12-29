@@ -17,6 +17,7 @@ const corsOption: cors.CorsOptions = {
   credentials: true
 };
 dotenv.config();
+
 class App {
   public app;
 
@@ -38,6 +39,8 @@ class App {
         console.log("Connected to the db ");
       }
     );
+    require("./Helpers/RedisInit");
+
     this.app.disable("x-powered-by");
 
     //@ts-ignore

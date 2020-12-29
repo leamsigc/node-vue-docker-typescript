@@ -31,15 +31,14 @@ export default class Register {
             if (err) {
               return next(err);
             }
-            try {
-              const { username, email, _id } = createdUser;
-              const token = await signAccessToken(createdUser);
-              const refreshToken = await signRefreshToken(createdUser);
 
-              res.status(200).json({ id: _id, username, email, token });
-            } catch (error) {
-              next(error);
-            }
+            const { username, email, _id } = createdUser;
+            const token = await signAccessToken(createdUser);
+            const refreshToken = await signRefreshToken(createdUser);
+
+            res
+              .status(200)
+              .json({ id: _id, username, email, token, refreshToken });
           }
         );
       } catch (error) {
