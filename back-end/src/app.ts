@@ -11,12 +11,13 @@ import passportJWTFun from "./Authorization/Auth";
 const LOCALSTRATERGY = require("passport-local").Strategy;
 import createErrors from "http-errors";
 
+dotenv.config();
+
 const corsOption: cors.CorsOptions = {
   origin: process.env.FRONT_END_URL,
   optionsSuccessStatus: 200,
   credentials: true
 };
-dotenv.config();
 
 class App {
   public app;

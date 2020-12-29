@@ -20,15 +20,16 @@ export default class Login {
     this.routes.get("/", (req, res, next) => {
       next(new createErrors.Unauthorized());
     });
+
     this.routes.post("/login", async (req, res, next) => {
       try {
         await logInSchemaVal.validateAsync(req.body);
 
         passport.authenticate("local", async (err, user, info) => {
-          if (err) throw new createErrors.InternalServerError();
-          if (!user)
+          if (err) next(new createErrors.InternalServerError());
+          if (!user) {
             next(new createErrors.NotFound("Invalid Username/Password"));
-          else {
+          } else {
             const { username, email, _id } = user;
             const token = await signAccessToken(user);
             const refreshToken = await signRefreshToken(user);
@@ -39,9 +40,10 @@ export default class Login {
           }
         })(req, res, next);
       } catch (error) {
-        if (error.isJoi === true)
+        if (error.isJoi === true) {
           return next(new createErrors.BadRequest("Invalid Username/Password"));
-        throw new createErrors.InternalServerError();
+        }
+        next(new createErrors.InternalServerError());
       }
     });
     this.routes.post("/logout", async (req, res, next) => {
